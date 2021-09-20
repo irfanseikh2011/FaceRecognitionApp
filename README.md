@@ -3,7 +3,10 @@ It is a face recognition web app which searches for a face in the picture. It ke
 
 # Demo
 
-Uploading FaceRecognition - Google Chrome 2021-09-20 12-19-08.mp4…
+https://user-images.githubusercontent.com/38558296/133965834-77fda28b-acc5-4e1f-9380-2684de731ea7.mp4
+
+
+
 
 
 
