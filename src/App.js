@@ -127,30 +127,26 @@ const particlesOptions = {
   retina_detect: true,
 };
 
+const initialState = {
+  input: "",
+  imageUrl: "",
+  box: {},
+  route: "signin",
+  isSigned: false,
+  user: {
+    id: "",
+    name: "",
+    email: "",
+    password: "",
+    entries: 0,
+    joined: "",
+  },
+};
+
 class App extends Component {
   constructor() {
     super();
-    this.state = {
-      input: "",
-      imageUrl: "",
-      box: {},
-      route: "signin",
-      isSigned: false,
-      user: {
-        id: "",
-        name: "",
-        email: "",
-        password: "",
-        entries: 0,
-        joined: new Date(),
-      },
-    };
-  }
-
-  componentDidMount() {
-    fetch("http://localhost:3001")
-      .then((res) => res.json())
-      .then((data) => console.log(data));
+    this.state = initialState;
   }
 
   loadUser = (data) => {
@@ -198,7 +194,7 @@ class App extends Component {
       .predict(Clarifai.FACE_DETECT_MODEL, this.state.input)
       .then((res) => {
         if (res) {
-          fetch("http://localhost:3001/image", {
+          fetch("https://nameless-forest-70834.herokuapp.com/image", {
             method: "put",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -241,7 +237,11 @@ class App extends Component {
           <div>
             <Navigation onRouteChange={this.onRouteChange} />
             <Logo />
-            <Rank name={this.state.user.name} times={this.state.user.entries} />
+
+            <Rank
+              name={this.state.user.name}
+              entries={this.state.user.entries}
+            />
             <ImageLinkForm
               onInputChange={this.onInputChange}
               onButtonSubmit={this.onButtonSubmit}
